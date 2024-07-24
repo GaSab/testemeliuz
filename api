@@ -1,0 +1,26 @@
+@csrf_exempt
+def departmentApi(request, id=0):
+    if request.method == 'GET':
+        departments = Departments.objects.all()
+        departments_ser = DepartmentSerializer(departments, many=True)
+        return JsonResponse(departments_ser.data, safe=False)
+    elif request.method == 'POST':
+        department_data = JSONParser().parse(request)
+        departments_ser = DepartmentSerializer(data=department_data)
+        if departments_ser.is_valid():
+            departments_ser.save()
+            return JsonResponse("saved successfully!", safe=False)
+        return JsonResponse("Failed to Add!", safe=False)
+    elif request.method == 'PUT':
+        department_data = JSONParser().parse(request)
+        department = Departments.objects.get(DepartmentId=department_data["DepartmentId"])
+        departments_ser = DepartmentSerializer(department, data=department_data)
+        if departments_ser.is_valid():
+            departments_ser.save()
+            return JsonResponse("updated successfully!", safe=False)
+        return JsonResponse("Failed to Update!", safe=False)
+    elif request.method == 'PUT':
+        department_data = JSONParser().parse(request)
+        department = Departments.objects.get(DepartmentId=department_data["DepartmentId"])
+        department.delete()
+        return JsonResponse("Deleted successfully!", safe=False)
