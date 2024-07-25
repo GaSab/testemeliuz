@@ -17,8 +17,8 @@ def new_user_sugestion(request):
         sugestions_ser = SugestionSerializer(sugestions, many=True)
         return JsonResponse(sugestions_ser.data, safe=False)
     elif request.method == 'POST':
-        return None
+        return JsonResponse({}, safe=False)
     elif request.method == 'PUT':
-        return None
+        return JsonResponse({}, safe=False)
     elif request.method == 'DELETE':
-        return None
+        return JsonResponse({}, safe=False)
