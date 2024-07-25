@@ -35,6 +35,7 @@ Eu construi basicamente 3 testes de funcionalidade:
 
 # Execução
 >>>>DOCKER
+
 -O projeto contem um arquivo dockerfile  que pode ser transformado em uma imagem utilizando 
 docker build -t testmeliuz .
 e executado utilizando
