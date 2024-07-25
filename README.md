@@ -38,7 +38,7 @@ Eu construi basicamente 3 testes de funcionalidade:
 -O projeto contem um arquivo dockerfile  que pode ser transformado em uma imagem utilizando 
 docker build -t testmeliuz .
 e executado utilizando
-sudo docker run -p 8000:8080 testmeliuz1
+sudo docker run -p 8000:8080 testmeliuz
 esse ultimo acontece pois pedi para dentro do docker a aplicação executar na porta 8080 e os parametros -p 8000:8080 ligam a porta 8000 local a porta 8080 da maquina docker.
 
 -Para testar a aplicação pode ser realizada uma chamada no endereço 127.0.0.1:8000/nus e ele retornará os 5 produtos mais vendidos seguindo a heurística.
