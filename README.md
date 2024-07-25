@@ -33,7 +33,7 @@ Eu construi basicamente 3 testes de funcionalidade:
 - O segundo é, dado que o banco esteja alimentado, ao inserir um novo produto com mais vendas que os outros anteriores, se ele seria retornado e o resultado seria o esperado.
 - O terceiro é o oposto do segundo, utilizando um podutos com menos vendas que os padrões ele nao deve entrar no resultado.
 
-# Execução
+# Execução e Uso
 >>>>DOCKER
 
 - O projeto contem um arquivo dockerfile  que pode ser transformado em uma imagem utilizando 
