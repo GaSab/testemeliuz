@@ -8,7 +8,7 @@ def fill():
     regs = data_table.to_dict('records')
     #print(data_table)
     #print(regs)
-    #print(data_table.columns)
+    SalesData.objects.all().delete()
     SalesData.objects.bulk_create(
         [SalesData(**r)for r in regs]
     )
