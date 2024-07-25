@@ -22,7 +22,7 @@ class BaseData(TestCase):
         self.assertEqual(jdata, response_model)
        
     
-    def test_w_1_more_product(self):
+    def test_w_1_more_product_bigger(self):
         from .filltable import fill
         fill()
         fill_data = SalesData.objects.all()
@@ -52,6 +52,38 @@ class BaseData(TestCase):
         jdata_new =  json.loads(data.content)
         #print("jnew:\n", jdata_new, len(jdata_new))
         self.assertEqual(jdata_new,  jdata[1:]+[new_product])
+
+    def test_w_1_more_product_smaller(self):
+        from .filltable import fill
+        fill()
+        fill_data = SalesData.objects.all()
+        self.assertEqual(len(fill_data),800)
+        client = Client()
+
+        data = self.client.get('/nus')
+        jdata =  json.loads(data.content)
+
+        prod_data = {
+        "sale_date": "2024-04-16",
+        "product_id": "100",
+        "product_title": "adaptador usb-c para p2",
+        "product_image_url": "https://www.lorempixel.com/67/706",
+        "store_name": "Submarino",
+        "store_id": "20",
+        "sales_per_day": "1",
+        "product_price": "10.00"}
+        s = SalesData.objects.create(**prod_data)
+        #print("s:", s)
+
+        client = Client()
+        new_product = SalesDataSerializer(SalesData.objects.get(id = s.id)).data
+       
+        #print("w_new:\n", jdata[1:]+[new_product],len(jdata[1:]+[new_product]))
+        data = self.client.get('/nus')
+        jdata_new =  json.loads(data.content)
+        print("jnew:\n", jdata_new, len(jdata_new))
+        print("jnew:\n", jdata, len(jdata))
+        self.assertEqual(jdata_new,  jdata)
        
 
         
